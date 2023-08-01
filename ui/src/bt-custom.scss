@@ -1,0 +1,17 @@
+/* import the necessary Bootstrap files */
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+/* -------begin customization-------- */   
+
+
+// $body-bg: #eeeeee;
+
+// /* or, use an existing variable */
+// $theme-colors: (
+//   primary: $purple
+// );
+
+
+/* finally, import Bootstrap to set the changes! */
+@import "node_modules/bootstrap/scss/bootstrap";

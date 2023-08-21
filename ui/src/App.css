@@ -24,13 +24,33 @@
     margin-left: 2rem;
 }
 
-#navbar-right {
-    margin-right: 2rem
-}
+
 
 .login-button {
     background-color: rgb(255, 59, 59) !important;
     color: white !important;
 
+}
+
+.login-head {
+    text-align: center;
+    padding: 20px
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-logo .btn-close {
+    position: absolute;
+    right: 10px
+}
+
+.login-body {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 

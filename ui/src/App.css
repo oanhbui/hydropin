@@ -32,22 +32,22 @@
 
 }
 
-.login-head {
+.modal-head {
     text-align: center;
     padding: 20px
 }
 
-.login-logo {
+.modal-logo {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.login-logo .btn-close {
+.modal-logo .btn-close {
     position: absolute;
     right: 10px
 }
 
-.login-body {
+.modal-body {
     width: 350px;
     margin-left: auto;
     margin-right: auto;

@@ -5,16 +5,22 @@ import logo from "./images/logo_transparent.png";
 
 const NavBar = () => {
   const [collapse, setCollapse] = useState(true);
-  const [modal, setModal] = useState(false);
+  const [modalLogin, setModalLogin] = useState(false);
+  const [modalSignup, setModalSignup] = useState(false);
 
   const handleNavbarCollapse = (e) => {
     setCollapse((collapse) => !collapse)
   };
 
-  const handleModal = (e) => {
+  const handleModalLogin = (e) => {
     e.stopPropagation();
-    setModal((modal) => !modal)
-  }
+    setModalLogin((modal) => !modal)
+  };
+
+  const handleModalSignup = (e) => {
+    e.stopPropagation();
+    setModalSignup((modal) => !modal)
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -43,10 +49,10 @@ const NavBar = () => {
             <span>
               <ul className="navbar-nav" id="navbar-right">
                 <li className="nav-item">
-                  <a className="nav-link login-button" type="button" onClick={handleModal}>Log in</a>
+                  <a className="nav-link login-button" type="button" onClick={handleModalLogin}>Log in</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Sign up</a>
+                  <a className="nav-link" type="button" onClick={handleModalSignup}>Sign up</a>
                 </li>
               </ul>
             </span>
@@ -55,17 +61,17 @@ const NavBar = () => {
         </div>
       </nav>
 
-      <div className={`modal fade ${modal ? 'show' : ''}`} id="loginModal" tabindex="-1" style={{ display: modal ? 'block' : 'none', backgroundColor: 'rgba(0,0,0,0.25)' }} onClick={handleModal}>
+      <div className={`modal fade ${modalLogin ? 'show' : ''}`} id="loginModal" tabindex="-1" style={{ display: modalLogin ? 'block' : 'none', backgroundColor: 'rgba(0,0,0,0.25)' }} onClick={handleModalLogin}>
         <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content">
-            <div className="login-head">
-              <div className="login-logo container">
+            <div className="modal-head">
+              <div className="modal-logo">
                 <img src={logo} width="50px" />
-                <button type="button" className="btn-close" onClick={handleModal}></button>
+                <button type="button" className="btn-close" onClick={handleModalLogin}></button>
               </div>
               <h1>Welcome to Hydropin</h1>
             </div>
-            <div className="modal-body login-body mb-5">
+            <div className="modal-body mb-5">
               <form>
                 <div className="mb-3">
                   <label for="email" className="form-label">Email address</label>
@@ -76,7 +82,42 @@ const NavBar = () => {
                   <input type="password" className="form-control" id="password" />
                   <div className="form-text">Forgot your password?</div>
                 </div>
-                <div class="d-grid gap-2"><button type="submit" className="btn btn-primary">Log in</button></div>
+                <div class="d-grid gap-2"><button type="submit" className="btn btn-danger">Log in</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`modal fade ${modalSignup ? 'show' : ''}`} id="signupModal" tabindex="-1" style={{ display: modalSignup ? 'block' : 'none', backgroundColor: 'rgba(0,0,0,0.25)' }} onClick={handleModalSignup}>
+        <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content">
+            <div className="modal-head">
+              <div className="modal-logo">
+                <img src={logo} width="50px" />
+                <button type="button" className="btn-close" onClick={handleModalSignup}></button>
+              </div>
+              <h1>Welcome to Hydropin</h1>
+            </div>
+            <div className="modal-body mb-5">
+              <form>
+              <div className="mb-3">
+                  <label for="first-name" className="form-label">First Name</label>
+                  <input type="text" className="form-control" id="first-name" />
+                </div>
+                <div className="mb-3">
+                  <label for="last-name" className="form-label">Last Name</label>
+                  <input type="text" className="form-control" id="last-name" />
+                </div>
+                <div className="mb-3">
+                  <label for="email" className="form-label">Email address</label>
+                  <input type="email" className="form-control" id="email" />
+                </div>
+                <div className="mb-5">
+                  <label for="password" className="form-label">Password</label>
+                  <input type="password" className="form-control" id="password" />
+                </div>
+                <div class="d-grid gap-2"><button type="submit" className="btn btn-danger">Sign me up</button></div>
               </form>
             </div>
           </div>

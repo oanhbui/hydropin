@@ -1,5 +1,6 @@
 from .base import db, BaseModel
 
+
 class User(BaseModel, db.Model):
 
     __tablename__ = "users"
@@ -19,5 +20,7 @@ class User(BaseModel, db.Model):
     def __repr__(self):
         return f'<User id={self.id} email={self.email}>'
 
-
-
+    def to_json(self):
+        return {"first_name": self.first_name,
+                "last_name": self.last_name,
+                "user_id": self.id}

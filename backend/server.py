@@ -5,9 +5,12 @@ from blueprints.web import web_pages
 from blueprints.api import api
 from blueprints.auth import auth
 from models import connect_to_db
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config.from_object(os.environ.get('CONFIG_MODULES', 'config.DefaultConfig'))
+
+CORS(app, origins=app.config.get("CORS_ORIGIN", ['*']), supports_credentials=True)
 
 app.register_blueprint(web_pages)
 app.register_blueprint(health_page, url_prefix='/health')

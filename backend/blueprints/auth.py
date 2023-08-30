@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session
+from flask import Blueprint, jsonify, make_response, request, session
 from services import auth as auth_service
 
 auth = Blueprint('auth', __name__)
@@ -17,10 +17,6 @@ def login_api():
         return {"user": session["user"]}
     return {'error': 'Invalid email or password'}, 403
 
-@auth.route('/logout')
-def log_out():
-    session.clear()
-    return {'success': True}
 
 @auth.route('/signup', methods=["POST"])
 def sign_up():
@@ -37,3 +33,15 @@ def sign_up():
                              data["password"])
     session["user"] = new_user.to_json()
     return {"user": session["user"]}
+
+@auth.route('/session')
+def get_current_session():
+    if session.get('user'):
+        return {'user': session['user']}
+    else:
+        return {'user': None}
+    
+@auth.route('/logout')
+def logout_user():
+    session.clear()
+    return {'user': None}

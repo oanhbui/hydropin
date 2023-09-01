@@ -1,3 +1,4 @@
+from typing import Dict
 from .base import db, BaseModel
 
 class Station(BaseModel, db.Model):
@@ -25,8 +26,24 @@ class Station(BaseModel, db.Model):
     availabilities = db.relationship("Availability", back_populates="station")
     queues = db.relationship("Queue", back_populates="station")
 
+    def __init__(self, capacity: str=None, **kwarg: Dict[str, any]):
+        super().__init__(**kwarg)
+        self.capacity_from_str(capacity)
+
+
     def __repr__(self):
         return f'<Station id={self.id} name={self.name}>'
+
+    def capacity_from_str(self, capacity: str):
+        if capacity is None:
+            self.capacity = None
+            return
+        try:
+            self.capacity = float(capacity.split()[0])
+        except ValueError:
+            pass
+
+
 
 class Rating(BaseModel, db.Model):
 

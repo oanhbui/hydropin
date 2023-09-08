@@ -33,6 +33,23 @@ class Station(BaseModel, db.Model):
 
     def __repr__(self):
         return f'<Station id={self.id} name={self.name}>'
+    
+    def to_json(self):
+        return {"id": self.id,
+                "name": self.name,
+                "image": self.image,
+                "street_address": self.street_address,
+                "city": self.city,
+                "state": self.state,
+                "zipcode": self.zipcode,
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "operator": self.operator,
+                "operator_url": self.operator_url,
+                "status": self.status,
+                "capacity": self.capacity,
+                "price": self.price,
+                "cars_in_line": self.cars_in_line}
 
     def capacity_from_str(self, capacity: str):
         if capacity is None:
@@ -91,7 +108,7 @@ class Availability(db.Model):
 
     def __repr__(self):
         return f'<Availability station_id={self.station_id} status={self.status}>'
-    
+
 class Queue(db.Model):
 
     __tablename__ = "queues"

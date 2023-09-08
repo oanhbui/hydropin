@@ -45,3 +45,13 @@ export async function logOut() {
     const data = await response.json();
     return data
 }
+
+export async function stations() {
+    const response = await fetch(`${API_URL}/api/stations`,
+        {
+            credential: "include"
+        }
+    );
+    const data = await response.json();
+    return data
+}

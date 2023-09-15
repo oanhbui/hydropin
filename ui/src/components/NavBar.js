@@ -5,6 +5,7 @@ import LogInForm from "./LogInForm";
 import { useFormik } from 'formik';
 import * as API from '../api';
 import SignUpForm from "./SignUpForm";
+import SearchBar from "./SearchBar";
 
 const NavBar = ({ loggedInUser, setLoggedInUser }) => {
   const [collapse, setCollapse] = useState(true);
@@ -77,29 +78,29 @@ const NavBar = ({ loggedInUser, setLoggedInUser }) => {
               <li className="nav-item">
                 <a className="nav-link" href="#">News</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">About</a>
-              </li>
+            </ul>
+            <div className="navbar-nav ms-4 container-fluid">
+              <SearchBar />
+            </div>
+
+
+            <ul className="navbar-nav align-right" id="navbar-right">
+              {loggedInUser ?
+                <li className="nav-item">
+                  <a className="nav-link login-button" type="button" onClick={handleLogout}>Log out</a>
+                </li>
+                :
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link login-button" type="button" onClick={handleModalLogin}>Log in</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" type="button" onClick={handleModalSignup}>Sign up</a>
+                  </li>
+                </>
+              }
             </ul>
 
-            <div >
-              <ul className="navbar-nav" id="navbar-right">
-                {loggedInUser ?
-                  <li className="nav-item">
-                    <a className="nav-link login-button" type="button" onClick={handleLogout}>Log out</a>
-                  </li>
-                  :
-                  <>
-                    <li className="nav-item">
-                      <a className="nav-link login-button" type="button" onClick={handleModalLogin}>Log in</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" type="button" onClick={handleModalSignup}>Sign up</a>
-                    </li>
-                  </>
-                }
-              </ul>
-            </div>
 
           </div>
         </div>

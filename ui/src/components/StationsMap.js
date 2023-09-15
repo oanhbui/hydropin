@@ -12,12 +12,14 @@ import Map, {
 } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Pin from './pin';
+import DetailSideBar from "./DetailSideBar";
 
 
 const TOKEN = "pk.eyJ1Ijoib2FuaC1idWkiLCJhIjoiY2xtMDN2MnhzMWxjNDNlbWRjOWpvZDQ5cCJ9.69n3gal5uW-vgtiaLqjYCA"; // Set your mapbox token here
 
 export default function StaionsMap({mapData}) {
   const [popupInfo, setPopupInfo] = useState(null);
+  const [sidebarData, setSidebarData] = useState(null);
 
   const pins = useMemo(
     () => mapData.map((station, index) => (
@@ -28,7 +30,7 @@ export default function StaionsMap({mapData}) {
         anchor='bottom'
         onClick={ e => {
           e.originalEvent.stopPropagation();
-          setPopupInfo(station);
+          setSidebarData(station);
         }}
       >
         <Pin /> 
@@ -49,17 +51,17 @@ export default function StaionsMap({mapData}) {
           clusterRadius: 50,
           clusterMaxZoom: 14
         }}
-        style={{width: "100%", height: 600}}
+        style={{width: "100%", height: 650}}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={TOKEN}
       >
-        <GeolocateControl position="top-left" />
-        <FullscreenControl position="top-left" />
-        <NavigationControl position="top-left" />
+        <GeolocateControl position="top-right" />
+        <FullscreenControl position="top-right" />
+        <NavigationControl position="top-right" />
 
         {pins}
 
-        {popupInfo && (
+        {/* {popupInfo && (
           <Popup
             anchor="top"
             longitude={Number(popupInfo.longitude)}
@@ -71,11 +73,11 @@ export default function StaionsMap({mapData}) {
             </div>
             <img width="100%" src={popupInfo.image} />
           </Popup>
-        )}
-
-
+        )}; */}
       </Map>
-
+      {sidebarData && (
+        <DetailSideBar sidebarData={sidebarData} />
+      )}
     </div>
   );
 }

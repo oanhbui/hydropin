@@ -3,3 +3,6 @@ from models import db, Station
 
 def station_list():
     return Station.query.all()
+
+def reviews_list():
+    

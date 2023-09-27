@@ -7,7 +7,7 @@ import * as API from '../api';
 import SignUpForm from "./SignUpForm";
 import SearchBar from "./SearchBar";
 
-const NavBar = ({ loggedInUser, setLoggedInUser }) => {
+const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
   const [collapse, setCollapse] = useState(true);
   const [modalLogin, setModalLogin] = useState(false);
   const [modalSignup, setModalSignup] = useState(false);
@@ -80,7 +80,7 @@ const NavBar = ({ loggedInUser, setLoggedInUser }) => {
               </li>
             </ul>
             <div className="navbar-nav ms-4 container-fluid">
-              <SearchBar />
+              <SearchBar handleCenterPointChange={handleCenterPointChange} />
             </div>
 
 

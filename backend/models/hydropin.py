@@ -75,6 +75,14 @@ class Rating(BaseModel, db.Model):
     user = db.relationship("User", back_populates="ratings")
     station = db.relationship("Station", back_populates="ratings")
 
+    def to_json(self):
+        return {"id": self.id,
+                "station_id": self.station_id,
+                "user_id": self.user_id,
+                "review": self.review,
+                "score": self.score,
+                "updated_on": self.updated_on}
+
     def __repr__(self):
         return f'<Rating station_id={self.station_id} score={self.score}>'
 

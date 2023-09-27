@@ -65,22 +65,32 @@
     overflow: hidden;
     z-index: 0
 }
- 
+
+
 .sidebar {
-     /* 100% Full-height */
-    width: 300px; /* 0 width - change this with JavaScript */
-    position: absolute; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 10px; /* Stay at the top */
+    width: 300px;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
     left: 10px;
     bottom: 10px;
     padding: 15px;
     background-color: rgba(255, 255, 255);
-    border-radius: 10px; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
+    border-radius: 10px;
+    overflow-x: hidden;
     transition: 0.5s;
-};
+}
 
-.sidebar-inner {
-    
+
+.review-content {
+    padding-top: 10px;
+    min-height: 10px;
+    font-size: small;
+    line-height: 1;
+}
+
+.search-bar .dropdown-menu {
+    top: 40px;
+    left: 0;
+    right: 0
 }

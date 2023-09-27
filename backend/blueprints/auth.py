@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from flask import Blueprint, jsonify, make_response, request, session
 from services import auth as auth_service
 
@@ -15,7 +16,7 @@ def login_api():
     if verify_user is not None:
         session["user"] = verify_user.to_json()
         return {"user": session["user"]}
-    return {'error': 'Invalid email or password'}, 403
+    return {'error': 'Invalid email or password'}, HTTPStatus.UNAUTHORIZED
 
 
 @auth.route('/signup', methods=["POST"])

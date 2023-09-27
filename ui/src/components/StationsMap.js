@@ -1,7 +1,6 @@
 
 import * as React from 'react';
-import {useState, useMemo} from 'react';
-import {createRoot} from 'react-dom/client';
+import {useState, useMemo, useRef, useEffect} from 'react';
 import Map, {
   Marker,
   Popup,
@@ -10,16 +9,55 @@ import Map, {
   ScaleControl,
   GeolocateControl
 } from 'react-map-gl';
+import { MapRef } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Pin from './pin';
+import StationPin from './StationPin';
 import DetailSideBar from "./DetailSideBar";
+import CenterPointPin from './CenterPointPin';
+import * as config from "../config"
 
+ // Set your mapbox token here
 
-const TOKEN = "pk.eyJ1Ijoib2FuaC1idWkiLCJhIjoiY2xtMDN2MnhzMWxjNDNlbWRjOWpvZDQ5cCJ9.69n3gal5uW-vgtiaLqjYCA"; // Set your mapbox token here
-
-export default function StaionsMap({mapData}) {
+export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
   const [popupInfo, setPopupInfo] = useState(null);
   const [sidebarData, setSidebarData] = useState(null);
+  const mapRef = useRef();
+
+  useEffect(() => {
+    if (centerPoint && mapRef) {
+      mapRef.current.flyTo({
+        center: centerPoint,
+        essential: true,
+        zoom: 11
+      })
+    }
+  }, [centerPoint]);
+
+  const offlinePinStyle = {
+    cursor: 'pointer',
+    fill: '#d00',
+    stroke: 'none'
+  };
+
+  const onlinePinStyle = {
+    cursor: 'pointer',
+    fill: '#0078c1',
+    stroke: 'none'
+  };
+
+  const otherPinStyle = {
+    cursor: 'pointer',
+    fill: '#feb21b',
+    stroke: 'none'
+  };
+
+  const pinColor = (status) => {
+    const statusColorMap = {
+      'online': onlinePinStyle,
+      'offline': offlinePinStyle
+    }
+    return statusColorMap[status] || otherPinStyle
+  }
 
   const pins = useMemo(
     () => mapData.map((station, index) => (
@@ -33,7 +71,17 @@ export default function StaionsMap({mapData}) {
           setSidebarData(station);
         }}
       >
-        <Pin /> 
+        <StationPin style={pinColor(station.status)} /><br/>
+        {station.distance ? <Popup
+            anchor="top"
+            longitude={station.longitude}
+            latitude={station.latitude}
+          >
+            <div>
+              {station.distance}
+            </div>
+          </Popup>
+          : null}
       </Marker>
     )),
     [mapData]
@@ -43,7 +91,8 @@ export default function StaionsMap({mapData}) {
   return (
     <div className="mapbox-map">
       <Map
-        initialViewState={{
+          ref={mapRef}
+          initialViewState={{
           longitude: -122.4,
           latitude: 37.8,
           zoom: 8,
@@ -53,30 +102,30 @@ export default function StaionsMap({mapData}) {
         }}
         style={{width: "100%", height: 650}}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken={TOKEN}
+        mapboxAccessToken={config.MAPBOX_TOKEN}
       >
         <GeolocateControl position="top-right" />
         <FullscreenControl position="top-right" />
         <NavigationControl position="top-right" />
 
+        {centerPoint ? 
+          <Marker 
+            longitude={centerPoint[0]}
+            latitude={centerPoint[1]}
+            anchor='bottom'
+          >
+          <CenterPointPin /> 
+          </Marker>
+        : null
+        }
         {pins}
 
         {/* {popupInfo && (
-          <Popup
-            anchor="top"
-            longitude={Number(popupInfo.longitude)}
-            latitude={Number(popupInfo.latitude)}
-            onClose={() => setPopupInfo(null)}
-          >
-            <div>
-              {popupInfo.name}, {popupInfo.zipcode}
-            </div>
-            <img width="100%" src={popupInfo.image} />
-          </Popup>
+          
         )}; */}
       </Map>
       {sidebarData && (
-        <DetailSideBar sidebarData={sidebarData} />
+        <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />
       )}
     </div>
   );

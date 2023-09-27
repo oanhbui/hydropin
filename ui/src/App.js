@@ -28,7 +28,7 @@ function App() {
       const data = await API.stations(centerPoint);
       setMapData(data.stations)
     })()
-  }, [])
+  }, [centerPoint])
   return (
     <div className="App">
       <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handleCenterPointChange={handleCenterPointChange} />

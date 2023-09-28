@@ -1,10 +1,11 @@
 from typing import Optional
-from models import db, Station, User, Rating
+from models import db, Station, User, Rating, Price, Availability, Queue
 from sqlalchemy import func
 import math
+from decimal import Decimal
 
 def deg_to_rad(deg): 
-    return deg * (math.pi/180)
+    return deg * Decimal(math.pi/180)
 
 def distance(point1, point2):
     [lat1, lon1] = point1
@@ -61,3 +62,12 @@ def average_score(station_id):
     if avg_score:
         return avg_score[0]
     return None
+
+def get_price_history(station_id):
+    price_history = db.session.query(Price.price, Price.updated_on).filter(Price.station_id == station_id).all()
+    history = []
+    for price, updated_on in price_history:
+        update = {"price": price,
+                  "updated_on": updated_on.strftime('%m/%y')}
+        history.append(update)
+    return history

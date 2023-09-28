@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import * as API from '../api';
 import RatingBar from "./RatingBar";
 import RatingForm from "./RatingForm";
+import PriceGraph from "./PriceGraph";
 
 const DetailSideBar = ({ sidebarData, loggedInUser }) => {
     const [tabContent, setTabContent] = useState('details');
@@ -40,9 +41,8 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
         (async () => {
           const data = await API.reviews(sidebarData.id);
           setReviewData(data)
-          console.log(reviewData)
         })()
-      }, [sidebarData]);
+      }, [sidebarData && sidebarData.id]);
 
 
     return (
@@ -100,7 +100,7 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                     
                 </div> : null}
             {tabContent === 'history' ? <div id="history">
-            <p>History tab </p>
+                <PriceGraph stationId={sidebarData.id} />
             </div> : null}
         </div>
     )

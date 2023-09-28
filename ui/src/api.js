@@ -89,5 +89,14 @@ export async function geoCodingApi(keyword) {
     const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${keyword}.json?access_token=${config.MAPBOX_TOKEN}&country=US`);
     const data = await response.json();
     return data.features
+};
 
+export async function priceHistory(stationId) {
+    const response = await fetch(`${API_URL}/api/stations/${stationId}/prices`,
+        {
+            credential: "include"
+        }
+    );
+    const data = await response.json();
+    return data
 }

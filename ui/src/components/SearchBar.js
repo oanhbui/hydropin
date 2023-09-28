@@ -23,10 +23,11 @@ const SearchBar = ({handleCenterPointChange}) => {
         })()
     }, [inputKeyword, userInput]);
 
-    const handleSuggestListClick = (feature) => {
+    const handleSuggestListClick = (e, feature) => {
+        e.preventDefault();
+        setUserInput(false);
         setInputKeyword(feature.place_name);
         setSuggestList(null);
-        setUserInput(false);
         if (typeof handleCenterPointChange === 'function') {
             const [longitude, latitude] = feature.center;
             handleCenterPointChange(longitude, latitude)
@@ -45,12 +46,12 @@ const SearchBar = ({handleCenterPointChange}) => {
                 <span className="input-group-text" id="basic-addon2">
                     <a href="#" type="button"><FontAwesomeIcon icon={faLocationCrosshairs} /></a>
                 </span>
-                {suggestList && suggestList.length > 0 ?
+                {userInput && (suggestList && suggestList.length > 0) ?
                     <div className="dropdown-menu show">
                         {suggestList.map(suggest => <a
                             style={{ backgroundColor: "none !important", fontSize: "smaller" }}
                             className="dropdown-item"
-                            onClick={(e) => handleSuggestListClick(suggest)}
+                            onClick={(e) => handleSuggestListClick(e, suggest)}
                             href="#">
                             {suggest.place_name}
                         </a>)}

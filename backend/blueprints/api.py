@@ -17,8 +17,6 @@ def station_list_api():
 
 @api.route('/stations/<int:station_id>/reviews')
 def review_list_api(station_id):
-    from time import sleep
-    sleep(2)
     return {
         'reviews': stations.reviews_list(station_id),
         'average': stations.average_score(station_id)
@@ -35,3 +33,8 @@ def post_review(station_id):
     score = request_body["score"]
     review = stations.create_review(station_id, user_id, review, score)
     return {'review': review.to_json()}
+
+@api.route('/stations/<int:station_id>/prices')
+def price_history(station_id):
+    price_history = stations.get_price_history(station_id)
+    return {"price_history": price_history}

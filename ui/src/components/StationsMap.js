@@ -76,9 +76,10 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
             anchor="top"
             longitude={station.longitude}
             latitude={station.latitude}
+            closeButton={false}
           >
             <div>
-              {station.distance}
+              {station.distance.toFixed(1)} miles
             </div>
           </Popup>
           : null}
@@ -101,7 +102,7 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
           clusterMaxZoom: 14
         }}
         style={{width: "100%", height: 650}}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={config.MAPBOX_TOKEN}
       >
         <GeolocateControl position="top-right" />
@@ -119,10 +120,6 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
         : null
         }
         {pins}
-
-        {/* {popupInfo && (
-          
-        )}; */}
       </Map>
       {sidebarData && (
         <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />

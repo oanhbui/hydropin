@@ -98,6 +98,7 @@ class Price(db.Model):
 
     station = db.relationship("Station", back_populates="prices")
 
+
     def __repr__(self):
         return f'<Price station_id={self.station_id} score={self.score}>'
 

@@ -7,6 +7,21 @@ import * as API from "../api";
 import * as config from '../config'
 
 
+const debounce = (callback, time=200) => {
+    let timerId = null;
+    return (...args) => {
+        if (timerId) {
+            clearTimeout(timerId);
+        }
+        timerId = setTimeout(() => callback(...args), time);
+    }
+}
+
+const deboucedAutocomplete = debounce(async (inputKeyword, setSuggestList) => {
+    const response = await API.geoCodingApi(inputKeyword);
+    setSuggestList(response)
+})
+
 const SearchBar = ({handleCenterPointChange}) => {
     const [inputKeyword, setInputKeyword] = useState("");
     const [userInput, setUserInput] = useState(false);
@@ -16,11 +31,7 @@ const SearchBar = ({handleCenterPointChange}) => {
         if (!inputKeyword || !userInput) {
             setSuggestList(null)
         }
-        (async () => {
-            const response = await API.geoCodingApi(inputKeyword);
-            console.log(response);
-            setSuggestList(response)
-        })()
+        deboucedAutocomplete(inputKeyword, setSuggestList);
     }, [inputKeyword, userInput]);
 
     const handleSuggestListClick = (e, feature) => {

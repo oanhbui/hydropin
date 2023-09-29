@@ -4,6 +4,7 @@ import * as API from '../api';
 import RatingBar from "./RatingBar";
 import RatingForm from "./RatingForm";
 import PriceGraph from "./PriceGraph";
+import QueueGraph from "./QueueGraph";
 
 const DetailSideBar = ({ sidebarData, loggedInUser }) => {
     const [tabContent, setTabContent] = useState('details');
@@ -101,6 +102,7 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                 </div> : null}
             {tabContent === 'history' ? <div id="history">
                 <PriceGraph stationId={sidebarData.id} />
+                <QueueGraph stationId={sidebarData.id} />
             </div> : null}
         </div>
     )

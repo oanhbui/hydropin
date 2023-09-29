@@ -24,7 +24,7 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
   const mapRef = useRef();
 
   useEffect(() => {
-    if (centerPoint && mapRef) {
+    if (centerPoint && mapRef.current) {
       mapRef.current.flyTo({
         center: centerPoint,
         essential: true,

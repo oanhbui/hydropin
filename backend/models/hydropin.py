@@ -18,7 +18,7 @@ class Station(BaseModel, db.Model):
     operator_url = db.Column(db.String)
     status = db.Column(db.String)
     capacity = db.Column(db.Float)
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
     cars_in_line = db.Column(db.Integer)
 
     ratings = db.relationship("Rating", back_populates="station")
@@ -94,7 +94,7 @@ class Price(db.Model):
     station_id = db.Column(db.Integer, db.ForeignKey("stations.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     updated_on = db.Column(db.DateTime(timezone=True), onupdate=db.func.now())
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
 
     station = db.relationship("Station", back_populates="prices")
 
@@ -111,7 +111,7 @@ class Availability(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     updated_on = db.Column(db.DateTime(timezone=True), onupdate=db.func.now())
     status = db.Column(db.String)
-    capacity = db.Column(db.Integer)
+    capacity = db.Column(db.Float)
 
     station = db.relationship("Station", back_populates="availabilities")
 

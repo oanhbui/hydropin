@@ -100,3 +100,13 @@ export async function priceHistory(stationId) {
     const data = await response.json();
     return data
 }
+
+export async function queueHistory(stationId) {
+    const response = await fetch(`${API_URL}/api/stations/${stationId}/queue`,
+        {
+            credential: "include"
+        }
+    );
+    const data = await response.json();
+    return data
+}

@@ -38,3 +38,8 @@ def post_review(station_id):
 def price_history(station_id):
     price_history = stations.get_price_history(station_id)
     return {"price_history": price_history}
+
+@api.route('/stations/<int:station_id>/queue')
+def queue_history(station_id):
+    queue_history = stations.get_queue_history(station_id)
+    return {"queue_history": queue_history}

@@ -71,3 +71,13 @@ def get_price_history(station_id):
                   "updated_on": updated_on.strftime('%m/%y')}
         history.append(update)
     return history
+
+def get_queue_history(station_id):
+    hourcol = func.extract('hour', Queue.updated_on)
+    queue_by_hour = db.session.query(hourcol, func.sum(Queue.cars_in_line)).filter(Queue.station_id == station_id).group_by(hourcol).order_by(hourcol).all()
+    queue_list = []
+    for hour, queue in queue_by_hour:
+        history = {"hour": hour,
+                   "queue": queue}
+        queue_list.append(history)
+    return queue_list

@@ -31,6 +31,7 @@ const SignUpForm = ({ modalSignup, handleModalSignup, setLoggedInUser }) => {
                 formik.resetForm();
             } catch (error){
                 formik.setFieldError('_global', 'Something went wrong please try again')
+                console.error(error)
             }
         },
     });

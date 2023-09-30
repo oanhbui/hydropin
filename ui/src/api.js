@@ -5,7 +5,7 @@ export async function signUp(signUpData) {
     const response = await fetch(`${API_URL}/auth/signup`,
         {
             method: "POST",
-            credentials: "includete",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(signUpData)
         }

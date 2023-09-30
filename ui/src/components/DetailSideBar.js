@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDirections } from "@fortawesome/free-solid-svg-icons";
 import * as API from '../api';
 import RatingBar from "./RatingBar";
 import RatingForm from "./RatingForm";
@@ -45,6 +47,8 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
         })()
       }, [sidebarData && sidebarData.id]);
 
+    const originAdd = `${sidebarData.street_address}, ${sidebarData.city}, ${sidebarData.state}, ${sidebarData.zipcode}`;
+    const encodedAdd = encodeURIComponent(originAdd)
 
     return (
         <div className="sidebar" >
@@ -60,9 +64,18 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                 </li>
             </ul>
             {tabContent === 'details' ? <div id="details">
-                <img src={sidebarData.image} width="100%" />
-                <h4>{sidebarData.name}</h4>
-                <p>Review</p>
+                <img src={sidebarData.image} width="100%" style={{marginBottom: "10px"}}/>
+                <h4>
+                    {sidebarData.name}
+                    <a href={`https://google.com/maps/dir/?api=1&destination=${encodedAdd}`} target="_blank" style={{float: "right"}}>
+                        <span>
+                            <FontAwesomeIcon icon={faDirections} size="2x" color="#0078c1" />
+                        </span>
+                    </a>
+                </h4>
+                <p>Reviews ({reviewData ? reviewData.reviews.length : null})
+                {reviewData ? <RatingBar value={reviewData.average} /> : null}
+                </p>
                 <p>Address: {sidebarData.street_address}, {sidebarData.city}, {sidebarData.state}, {sidebarData.zipcode}</p>
                 <p>Operator: {sidebarData.operator}</p>
                 <p>Website: {sidebarData.operator_url}</p>

@@ -1,7 +1,8 @@
 from http import HTTPStatus
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, current_app
 from services import stations as stations
 from decimal import Decimal
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -43,3 +44,11 @@ def price_history(station_id):
 def queue_history(station_id):
     queue_history = stations.get_queue_history(station_id)
     return {"queue_history": queue_history}
+
+
+@api.route('/news')
+def get_news():
+    params = request.args.to_dict()
+    params['apiKey'] = current_app.config['NEWS_API_KEY']
+    response = requests.get('https://newsapi.org/v2/everything', params=params)
+    return response.json()

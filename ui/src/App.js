@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import NavBar from './components/NavBar';
 import StaionsMap from './components/StationsMap';
+import NewsApi from './components/NewsApi';
 import { useState, useEffect } from 'react';
 import * as API from './api';
 import './App.css';
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handleCenterPointChange={handleCenterPointChange} />
       <StaionsMap mapData={mapData} loggedInUser={loggedInUser} centerPoint={centerPoint} />
+      <NewsApi />
     </div>
   );
 }

@@ -13,6 +13,8 @@ class DefaultConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SESSION_COOKIE_NAME = 'flask_ss'
 
+    NEWS_API_KEY = os.environ.get('NEWS_API_KEY', 'd132d879457741588afe3ce536829c03')
+
 class DevelopmentConfig(DefaultConfig):
     DEBUG = True
     DEVELOPMENT = True

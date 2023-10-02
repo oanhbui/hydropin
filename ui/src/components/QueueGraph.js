@@ -44,8 +44,6 @@ const QueueGraph = ({ stationId }) => {
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="hour" />
-                <YAxis />
-                <Tooltip />
                 <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '40px' }} />
                 <ReferenceLine y={0} stroke="#000" />
                 <Brush dataKey="hour" height={30} stroke="#8884d8" />

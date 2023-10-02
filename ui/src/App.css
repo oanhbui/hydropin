@@ -1,4 +1,10 @@
-
+:root {
+    --card_width: 420px;
+    --row_increment: 10px;
+    --card_border_radius: 16px;
+    --card_medium: 50;
+    --card_large: 65;
+}
 
 
 .navbar {
@@ -93,4 +99,71 @@
     top: 40px;
     left: 0;
     right: 0
+}
+
+.pin_container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--card_width));
+    grid-auto-rows: var(--row_increment);
+    justify-content: center;
+
+    background-color: #f9cb60;
+}
+
+.pin_container .card {
+    position: relative;
+    padding: 0;
+    margin: 30px 15px 10px;
+    border: none;
+    border-radius: var(--card_border_radius);
+    background-color: white;
+    overflow: hidden
+}
+
+
+.pin_container .card_medium {
+    grid-row-end: span var(--card_medium);
+}
+
+.pin_container .card_large {
+    grid-row-end: span var(--card_large);
+}
+
+.pin_container .card_large .article-image {
+    min-width: 100%;
+    position: absolute;
+    height: 60%;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.pin_container .card_medium .article-image {
+    min-width: 100%;
+    position: absolute;
+    height: 50%;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.article-info {
+    position: absolute;
+    bottom: 0;
+    padding: 15px;
+}
+
+
+
+@media (max-width: 1000px) {
+    .mapbox-map {
+        margin: 0;
+    }
+
+    
 }

@@ -73,10 +73,10 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
                 <a className="nav-link" aria-current="page" href="#">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Maps</a>
+                <a className="nav-link" href="#map">Maps</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">News</a>
+                <a className="nav-link" href="#news">News</a>
               </li>
             </ul>
             <div className="navbar-nav ms-4 container-fluid">

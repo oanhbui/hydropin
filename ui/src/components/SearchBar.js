@@ -52,10 +52,7 @@ const SearchBar = ({handleCenterPointChange}) => {
             <div className="input-group search-bar dropdown">
                 <input type="text" className="form-control dropdown-toggle" data-bs-toggle="dropdown" placeholder="Search" value={inputKeyword} onChange={e => {setInputKeyword(e.target.value); setUserInput(true)}} />
                 <span className="input-group-text" id="basic-addon2">
-                    <a href="#" type="button"><FontAwesomeIcon icon={faSearch} /></a>
-                </span>
-                <span className="input-group-text" id="basic-addon2">
-                    <a href="#" type="button"><FontAwesomeIcon icon={faLocationCrosshairs} /></a>
+                    <FontAwesomeIcon icon={faSearch} />
                 </span>
                 {userInput && (suggestList && suggestList.length > 0) ?
                     <div className="dropdown-menu show">

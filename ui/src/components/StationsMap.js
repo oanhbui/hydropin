@@ -92,6 +92,7 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
   return (
     <div className="mapbox-map">
       <Map
+          id="map"
           ref={mapRef}
           initialViewState={{
           longitude: -122.4,
@@ -101,7 +102,7 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
           clusterRadius: 50,
           clusterMaxZoom: 14
         }}
-        style={{width: "100%", height: 650}}
+        style={{width: "100%", height: "100vh"}}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={config.MAPBOX_TOKEN}
       >
@@ -120,10 +121,11 @@ export default function StaionsMap({mapData, loggedInUser, centerPoint}) {
         : null
         }
         {pins}
+        {sidebarData && (
+          <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />
+        )}
       </Map>
-      {sidebarData && (
-        <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />
-      )}
+      
     </div>
   );
 }

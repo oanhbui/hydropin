@@ -4,8 +4,10 @@ from sqlalchemy import func
 import math
 from decimal import Decimal
 
-def deg_to_rad(deg): 
+
+def deg_to_rad(deg):
     return deg * Decimal(math.pi/180)
+
 
 def distance(point1, point2):
     [lat1, lon1] = point1
@@ -13,10 +15,12 @@ def distance(point1, point2):
     R = 3958.756
     dLat = deg_to_rad(lat2 - lat1)
     dLon = deg_to_rad(lon2 - lon1)
-    a = math.sin(dLat / 2) * math.sin(dLat/2) + math.cos(deg_to_rad(lat1)) * math.cos(deg_to_rad(lat2)) * math.sin(dLon/2) * math.sin(dLon/2)
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a)); 
+    a = math.sin(dLat / 2) * math.sin(dLat/2) + math.cos(deg_to_rad(lat1)) * \
+        math.cos(deg_to_rad(lat2)) * math.sin(dLon/2) * math.sin(dLon/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d = R * c
     return d
+
 
 def sort_by_distance(point, stations, size=5):
     result = []
@@ -33,11 +37,12 @@ def sort_by_distance(point, stations, size=5):
 def station_list():
     return Station.query.all()
 
+
 def reviews_list(station_id):
-    reviews_tuple = db.session.query(User.first_name, User.last_name, 
-                            Rating.review, Rating.score, Rating.updated_on).join(Rating).filter(
-                                Rating.station_id == station_id
-                            ).all()
+    reviews_tuple = db.session.query(User.first_name, User.last_name,
+                                     Rating.review, Rating.score, Rating.updated_on).join(Rating).filter(
+        Rating.station_id == station_id
+    ).all()
     reviews = []
     for first_name, last_name, review, score, updated_on in reviews_tuple:
         review = {"first_name": first_name,
@@ -48,6 +53,7 @@ def reviews_list(station_id):
         reviews.append(review)
     return reviews
 
+
 def create_review(station_id, user_id, review, score):
     review = Rating(station_id=station_id,
                     user_id=user_id,
@@ -57,14 +63,18 @@ def create_review(station_id, user_id, review, score):
     db.session.commit()
     return review
 
+
 def average_score(station_id):
-    avg_score = db.session.query(func.avg(Rating.score)).filter(Rating.station_id == station_id).first()
+    avg_score = db.session.query(func.avg(Rating.score)).filter(
+        Rating.station_id == station_id).first()
     if avg_score:
         return avg_score[0]
     return None
 
+
 def get_price_history(station_id):
-    price_history = db.session.query(Price.price, Price.updated_on).filter(Price.station_id == station_id).all()
+    price_history = db.session.query(Price.price, Price.updated_on).filter(
+        Price.station_id == station_id).all()
     history = []
     for price, updated_on in price_history:
         update = {"price": price,
@@ -72,12 +82,25 @@ def get_price_history(station_id):
         history.append(update)
     return history
 
+
 def get_queue_history(station_id):
-    hourcol = func.extract('hour', Queue.updated_on)
-    queue_by_hour = db.session.query(hourcol, func.sum(Queue.cars_in_line)).filter(Queue.station_id == station_id).group_by(hourcol).order_by(hourcol).all()
+    """ Return cars in queue per hour, padding missing hours """
+    hourcol = func.extract("hour", Queue.updated_on)
+    queue_by_hour = (
+        db.session.query(hourcol, func.cast(
+            func.sum(Queue.cars_in_line), db.Integer))
+        .filter(Queue.station_id == station_id)
+        .group_by(hourcol)
+        .order_by(hourcol)
+        .all()
+    )
     queue_list = []
+    queue_by_hour_lookup = {}
     for hour, queue in queue_by_hour:
-        history = {"hour": hour,
-                   "queue": queue}
-        queue_list.append(history)
+        queue_by_hour_lookup[hour] = queue
+
+    for hour in range(24):
+        item = {"hour": hour, "queue": queue_by_hour_lookup.get(hour, 0)}
+        queue_list.append(item)
+
     return queue_list

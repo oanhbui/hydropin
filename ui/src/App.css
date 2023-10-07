@@ -14,6 +14,10 @@
     background: white;
 }
 
+.navbar .navbar-brand img {
+    height: 80px;
+}
+
 #navbar-buttons {
     font-size: larger;
     font-weight:500;
@@ -82,14 +86,34 @@
     position: absolute;
     z-index: 1;
     top: 20px;
-    left: 20px;
+    left: -500px;
     bottom: 20px;
     padding: 15px;
     background-color: #fffef8;
     border-radius: 10px;
-    overflow-x: hidden;
     transition: 0.5s;
     font-size: 15px;
+}
+
+.sidebar.show {
+    left: 20px;
+}
+
+.sidebar .sidebar-inner {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.sidebar .close-sidebar {
+    position: absolute;
+    right: -30px;
+    border-radius: 0 10px 10px 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 10px;
+    cursor: pointer;
 }
 
 
@@ -184,6 +208,26 @@
 @media (max-width: 1000px) {
     .mapbox-map {
         margin: 0;
+    }
+
+    .App {
+        margin-top: 80px
+    }
+
+    .navbar .navbar-brand img {
+        height: 55px
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebar {
+        width: 80%;
+        top: 5px;
+        bottom: 5px;
+    }
+
+    .sidebar.show {
+        left: 5px;
     }
 }
 

@@ -158,10 +158,8 @@ export default function StaionsMap({ mapData, loggedInUser, centerPoint, handleC
           : null
         }
         {pins}
-        {sidebarData && (
-          <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />
-        )}
 
+        <DetailSideBar sidebarData={sidebarData} loggedInUser={loggedInUser} />
 
         <Legend statusColorMap={statusColorMap} />
       </Map>

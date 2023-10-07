@@ -41,7 +41,7 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
       <nav className="navbar fixed-top navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <img src={logo_text} alt="Hydropin page logo" style={{ height: '80px' }} />
+            <img src={logo_text} alt="Hydropin page logo"/>
           </a>
           <button className="navbar-toggler" type="button" onClick={handleNavbarCollapse} >
             <span className="navbar-toggler-icon"></span>

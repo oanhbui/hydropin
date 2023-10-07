@@ -20,11 +20,12 @@ const PriceGraph = ({stationId}) => {
 
     return (
         <ResponsiveContainer width="100%" height={300}>
-            <LineChart width={600} height={300} data={priceGraphData}>
+            <LineChart width={500}
+                height={300} data={priceGraphData} margin={{top: 0, right: 0, bottom: 0, left: 20}} >
                 <Line type="monotone" dataKey="price" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                 <XAxis dataKey="update" />
-                <YAxis />
+                <YAxis orientation="right"/>
             </LineChart>
         </ResponsiveContainer>
 

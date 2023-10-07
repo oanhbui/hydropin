@@ -1,14 +1,17 @@
 :root {
-    --card_width: 420px;
+    --card_width: 380px;
     --row_increment: 10px;
-    --card_border_radius: 16px;
     --card_medium: 50;
-    --card_large: 65;
+    --card_large: 50;
 }
 
+.App {
+    padding-bottom: 50px;
+    margin-top: 120px
+}
 
 .navbar {
-    background: white
+    background: white;
 }
 
 #navbar-buttons {
@@ -18,12 +21,13 @@
 
 #navbar-buttons a {
     border-radius: 3mm;
-    background-color: rgb(247, 247, 240);
+    background-color: #0078c1; 
+    color: white
 }
 
 #navbar-buttons a:hover {
     color: white;
-    background-color: rgb(59, 137, 246);
+    background-color: #FEB21B;
 }
 
 #navbar-buttons li {
@@ -77,14 +81,15 @@
     width: 400px;
     position: absolute;
     z-index: 1;
-    top: 10px;
-    left: 10px;
-    bottom: 10px;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
     padding: 15px;
-    background-color: rgba(255, 255, 255);
+    background-color: #fffef8;
     border-radius: 10px;
     overflow-x: hidden;
     transition: 0.5s;
+    font-size: 15px;
 }
 
 
@@ -95,36 +100,57 @@
     line-height: 1;
 }
 
+.search-bar input {
+    border-radius: 5px 0 0 5px;
+    border-right: none
+}
+
 .search-bar .dropdown-menu {
     top: 40px;
     left: 0;
     right: 0
 }
 
-.pin_container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.nav-pills {
+    font-size: 15px;
+    font-weight: 500;
+}
 
+.nav-pills .nav-link.active {
+    background-color: #0078c1;
+}
+
+.news-header {
+    height: 130px;
+    margin-top: 50px;
+    padding-top: 40px;
+    padding-left: 150px;
+    background-color: #0078c1;
+    color: white;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.pin_container {
+    top: 0;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, var(--card_width));
     grid-auto-rows: var(--row_increment);
     justify-content: center;
-
-    background-color: #f9cb60;
+    background-color: #E2F2F9;
+  
 }
 
 .pin_container .card {
     position: relative;
     padding: 0;
-    margin: 30px 15px 10px;
+    margin: 50px 20px 10px;
     border: none;
-    border-radius: var(--card_border_radius);
-    background-color: white;
-    overflow: hidden
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px rgb(215, 215, 215);
 }
 
 
@@ -136,15 +162,8 @@
     grid-row-end: span var(--card_large);
 }
 
-.pin_container .card_large .article-image {
-    min-width: 100%;
-    position: absolute;
-    height: 60%;
-    left: 50%;
-    transform: translateX(-50%)
-}
 
-.pin_container .card_medium .article-image {
+.pin_container .article-image {
     min-width: 100%;
     position: absolute;
     height: 50%;
@@ -156,6 +175,8 @@
     position: absolute;
     bottom: 0;
     padding: 15px;
+    color: #1b4965;
+    font-weight: bold
 }
 
 
@@ -164,6 +185,47 @@
     .mapbox-map {
         margin: 0;
     }
+}
 
+.news {
+    background-color: #E2F2F9;
+    padding-bottom: 50px
+}
+
+.load-more {
+    text-align: center;
+    color: #1b4965;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.color-direction {
+    position: absolute;
+    float: right;
+    right: 80px;
+    width: 120px;
+    height: 100px;
+    top: 10px;
+    border: thin rgb(227, 225, 225);
+    border-radius: 5px;
+    background-color: white;
     
+}
+
+.news-articles h3 {
+    padding-top: 20px;
+    padding-left: 170px
+}
+
+
+.footer {
+    height: 50px;
+    line-height: 50px;
+    overflow-y: hidden;
+    background-color: #0078c1;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
 }

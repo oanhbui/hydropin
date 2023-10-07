@@ -11,12 +11,6 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
   const [collapse, setCollapse] = useState(true);
   const [modalLogin, setModalLogin] = useState(false);
   const [modalSignup, setModalSignup] = useState(false);
-  const [signupForm, setSignupForm] = useState({
-    "fist_name": '',
-    "last_name": '',
-    "email": '',
-    "password": ''
-  })
 
 
   const handleNavbarCollapse = (e) => {
@@ -42,24 +36,9 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
     API.logOut()
   }
 
-  const handleSignupChange = (e) => {
-    const inputID = e.target.id;
-    setSignupForm((prevValue) => ({ ...prevValue, [inputID]: e.target.value }))
-  };
-
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const data = await API.signUp(signupForm);
-
-    } catch (err) {
-
-    }
-  }
-
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             <img src={logo_text} alt="Hydropin page logo" style={{ height: '80px' }} />

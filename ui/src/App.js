@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import NavBar from './components/NavBar';
 import StaionsMap from './components/StationsMap';
 import NewsApi from './components/NewsApi';
+import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
 import * as API from './api';
 import './App.css';
@@ -33,8 +34,9 @@ function App() {
   return (
     <div className="App">
       <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} handleCenterPointChange={handleCenterPointChange} />
-      <StaionsMap mapData={mapData} loggedInUser={loggedInUser} centerPoint={centerPoint} />
+      <StaionsMap mapData={mapData} loggedInUser={loggedInUser} centerPoint={centerPoint} handleCenterPointChange={handleCenterPointChange}/>
       <NewsApi />
+      <Footer />
     </div>
   );
 }

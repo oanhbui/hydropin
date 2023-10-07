@@ -111,9 +111,9 @@ export async function queueHistory(stationId) {
     return data
 }
 
-export async function newsApi() {
+export async function newsApi(currentPage=1) {
     const search_keyword = encodeURIComponent('hydrogen fuel cell vehicles');
-    const response = await fetch(`${API_URL}/api/news?q=${search_keyword}&excludeDomains=sciencedaily.com`);
+    const response = await fetch(`${API_URL}/api/news?q=${search_keyword}&excludeDomains=sciencedaily.com&pageSize=${config.ARTICLES_PER_PAGE}&page=${currentPage}`);
     const data = await response.json();
     return data
 }

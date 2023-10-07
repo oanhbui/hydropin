@@ -42,7 +42,7 @@ def reviews_list(station_id):
     reviews_tuple = db.session.query(User.first_name, User.last_name,
                                      Rating.review, Rating.score, Rating.updated_on).join(Rating).filter(
         Rating.station_id == station_id
-    ).all()
+    ).order_by(db.desc(Rating.updated_on)).all()
     reviews = []
     for first_name, last_name, review, score, updated_on in reviews_tuple:
         review = {"first_name": first_name,

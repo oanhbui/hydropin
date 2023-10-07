@@ -35,12 +35,7 @@ const QueueGraph = ({ stationId }) => {
                 width={500}
                 height={300}
                 data={queueGraphData}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
+                margin={{top: 0, right: 50, bottom: 0, left: 20}}
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="hour" />

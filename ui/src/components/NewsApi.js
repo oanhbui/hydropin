@@ -65,11 +65,14 @@ const NewsApi = () => {
     };
 
     return (
-        <div className="news">
-
+        <div className="news" id="news">
+            <div className="white-space">
+                
+            </div>
             {newsData ?
                 <>
-                    <div className="news-header" id="news">
+                    
+                    <div className="news-header" >
                         <h1 style={{ fontWeight: "bold" }}>What's new?</h1>
                     </div>
                     

@@ -34,6 +34,15 @@
     background-color: #FEB21B;
 }
 
+#navbar-buttons a.dropdown-item {
+    background-color: white;
+    color: black
+}
+
+#navbar-buttons a.dropdown-item:hover {
+    background-color: #c2e3f8;
+}
+
 #navbar-buttons li {
     margin-left: 2rem;
 }
@@ -78,6 +87,14 @@
     border-radius: 3mm;
     overflow: hidden;
     z-index: 0
+}
+
+.map-anchor {
+    height: 1px;
+    width: 1px;
+    position: relative;
+    top: -120px;
+    background-color: transparent;
 }
 
 
@@ -146,7 +163,7 @@
 
 .news-header {
     height: 130px;
-    margin-top: 50px;
+    margin-top: 100px;
     padding-top: 40px;
     padding-left: 150px;
     background-color: #0078c1;
@@ -231,10 +248,11 @@
     }
 }
 
-.news {
-    background-color: #E2F2F9;
-    padding-bottom: 50px
+.white-space {
+    height: 1px;
+    background-color: white;
 }
+
 
 .load-more {
     text-align: center;

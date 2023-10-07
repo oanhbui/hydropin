@@ -108,6 +108,7 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                                         <RatingBar value={0} size="lg" />
                                     </>
                                 }
+                                    <div className="mb-2"></div>
                                 {
                                 loggedInUser ?
                                 <RatingForm stationID={sidebarData.id} afterSubmit={handleAfterSubmitReview}/>

@@ -127,9 +127,12 @@ export default function StaionsMap({ mapData, loggedInUser, centerPoint, handleC
 
 
   return (
+    <>
+    <div className='map-anchor' id="map"></div>
     <div className="mapbox-map">
+      
       <Map
-        id="map"
+        
         ref={mapRef}
         initialViewState={{
           longitude: -122.4,
@@ -164,5 +167,7 @@ export default function StaionsMap({ mapData, loggedInUser, centerPoint, handleC
         <Legend statusColorMap={statusColorMap} />
       </Map>
     </div>
+    </>
+    
   );
 }

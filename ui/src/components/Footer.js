@@ -11,23 +11,21 @@ const Footer = () => {
         <div className="footer container-fluid">
             <div className="row">
                 <div className="col-6">
-                    <p>&copy; Copyright 2023 by Oanh Bui</p>
+                    <p>&copy; Copyright 2023 by <a taget="_blank" href="https://oanhbui.com">Oanh Bui</a></p>
                 </div>
                 <div className="col-2"></div>
                 <div className="col-4">
                     <div className="row">
                         <div className="col-2">
-                            <FontAwesomeIcon icon={faLinkedinIn} size="lg"/>
+                            <a href="https://www.linkedin.com/in/oanhbp/" target="_blank" title="LinkedIn"><FontAwesomeIcon icon={faLinkedinIn} size="lg"/></a>
                         </div>
                         <div className="col-2">
-                        <FontAwesomeIcon icon={faGithub} size="lg" />
+                            <a href="https://github.com/oanhbui/hydropin" target="_blank"  title="Github"><FontAwesomeIcon icon={faGithub} size="lg" /></a>
                         </div>
                         <div className="col-2">
-                        <FontAwesomeIcon icon={faEnvelope} size="lg" />
+                            <a href="mailto:oanhbp3105@gmail.com" target="_blank"><FontAwesomeIcon icon={faEnvelope} size="lg" /></a>
                         </div>
-                        <div className="col-2">
-                        <FontAwesomeIcon icon={faFacebook} size="lg" />
-                        </div>
+                        <div className="col-2"></div>
                     </div>
                 </div>
             </div>

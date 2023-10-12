@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDirections, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { formatRelative, subDays } from 'date-fns';
 import * as API from '../api';
 import RatingBar from "./RatingBar";
 import RatingForm from "./RatingForm";
@@ -85,14 +86,34 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                     </ul>
                     {tabContent === 'details' ? <div id="details">
                         <img src={sidebarData.image ? sidebarData.image : "https://as1.ftcdn.net/v2/jpg/05/65/36/10/1000_F_565361046_MNuPibxIEA5asH7JJ395bqG5zAZB1OZh.jpg"} width="100%" style={{marginBottom: "10px", marginTop: "10px"}}/>
-                        <p>Reviews ({reviewData ? reviewData.reviews.length : null})
-                        {reviewData ? <RatingBar value={reviewData.average} /> : null}
-                        </p>
-                        <p>Address: {sidebarData.street_address}, {sidebarData.city}, {sidebarData.state}, {sidebarData.zipcode}</p>
-                        <p>Operator: {sidebarData.operator}</p>
-                        <p>Website: {sidebarData.operator_url}</p>
-                        <p>Status: {sidebarData.status}</p>
-                        <p>Current capacity: {sidebarData.capacity} kg</p>
+                        <hr />
+                        <div className="container detailed-info">
+                            <p style={{fontSize: "17px"}}>Reviews ({reviewData ? reviewData.reviews.length : null})
+                            
+                            </p>
+                            {reviewData ? <RatingBar value={reviewData.average} /> : null}
+                            <hr />
+                            <div className="row">
+                                <div className="col-3 label">Address</div>
+                                <div className="col-9">{sidebarData.street_address}, {sidebarData.city}, {sidebarData.state}, {sidebarData.zipcode}</div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3 label">Operator</div>
+                                <div className="col-9">{sidebarData.operator}</div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3 label">Website</div>
+                                <div className="col-9"><a href={sidebarData.operator_url}>{sidebarData.operator_url}</a></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3 label">Status</div>
+                                <div className="col-9">{sidebarData.status}</div>
+                            </div>
+                            <div className="row">
+                                <div className="col-3 label">Current capacity</div>
+                                <div className="col-9">{sidebarData.capacity} kg</div>
+                            </div>
+                        </div>
                     </div> : null}
                     {tabContent === 'reviews' ? 
                         <div id="reviews">
@@ -118,10 +139,12 @@ const DetailSideBar = ({ sidebarData, loggedInUser }) => {
                             </div>
                             {reviewData && reviewData.reviews.map((review) => (
                                 <div className="review-content">
-                                    <p style={{paddingBottom: "0px"}}><b>{review.first_name} {review.last_name}</b></p>
+                                    <p style={{paddingBottom: "0px"}}><b>{review.first_name} {review.last_name}</b>
                                     <RatingBar value={review.score} size="sm"/>
+                                    </p>
                                     <p>{review.review}</p>
-                                    <p>posted on: {review.updated_on}</p>
+                                    <p><i>posted on: {formatRelative(new Date(review.updated_on), new Date())}</i></p>
+                                    <hr />
                                 </div>
                             ))}
                         </div> : null}

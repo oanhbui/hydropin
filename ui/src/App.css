@@ -60,6 +60,11 @@
 
 }
 
+.user-avatar {
+    font-size: 20px;
+    color: #167bba
+}
+
 .modal-head {
     text-align: center;
     padding: 20px
@@ -81,6 +86,10 @@
     margin-right: auto
 }
 
+.error-message {
+    color:rgb(255, 59, 59)
+}
+
 .mapbox-map {
     position: relative;
     margin: 0 60px;
@@ -95,6 +104,10 @@
     position: relative;
     top: -120px;
     background-color: transparent;
+}
+
+.popup-distance {
+    font-weight: bold;
 }
 
 
@@ -133,12 +146,16 @@
     cursor: pointer;
 }
 
+.detailed-info .row {
+    margin-bottom: 20px;
+}
+
+.detailed-info .label {
+    font-weight: bold;
+}
 
 .review-content {
-    padding-top: 10px;
-    min-height: 10px;
-    font-size: small;
-    line-height: 1;
+    margin-top: 20px;
 }
 
 .search-bar input {
@@ -290,4 +307,9 @@
     text-align: center;
     position: fixed;
     bottom: 0;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
 }

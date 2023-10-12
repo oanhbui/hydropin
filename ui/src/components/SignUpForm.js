@@ -64,7 +64,7 @@ const SignUpForm = ({ modalSignup, handleModalSignup, setLoggedInUser }) => {
                                     value={formik.values.first_name}
                                 />
                                 {formik.touched.first_name && formik.errors.first_name ? (
-                                    <div>{formik.errors.first_name}</div>
+                                    <div className="error-message">{formik.errors.first_name}</div>
                                 ) : null}
                             </div>
                             <div className="mb-3">
@@ -79,7 +79,7 @@ const SignUpForm = ({ modalSignup, handleModalSignup, setLoggedInUser }) => {
                                     value={formik.values.last_name}
                                 />
                                 {formik.touched.last_name && formik.errors.last_name ? (
-                                    <div>{formik.errors.last_name}</div>
+                                    <div className="error-message">{formik.errors.last_name}</div>
                                 ) : null}
                             </div>
                             <div className="mb-3">
@@ -94,7 +94,7 @@ const SignUpForm = ({ modalSignup, handleModalSignup, setLoggedInUser }) => {
                                     value={formik.values.email}
                                 />
                                 {formik.touched.email && formik.errors.email ? (
-                                    <div>{formik.errors.email}</div>
+                                    <div className="error-message">{formik.errors.email}</div>
                                 ) : null}
                             </div>
                             <div className="mb-5">
@@ -109,7 +109,7 @@ const SignUpForm = ({ modalSignup, handleModalSignup, setLoggedInUser }) => {
                                     value={formik.values.password}
                                 />
                                 {formik.touched.password && formik.errors.password ? (
-                                    <div>{formik.errors.password}</div>
+                                    <div className="error-message">{formik.errors.password}</div>
                                 ) : null}
                             </div>
                             <div class="d-grid gap-2"><button type="submit" className="btn btn-danger" disabled={formik.isSubmitting}>Sign me up</button></div>

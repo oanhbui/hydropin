@@ -41,7 +41,7 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
       <nav className="navbar fixed-top navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <img src={logo_text} alt="Hydropin page logo"/>
+            <img src={logo_text} alt="Hydropin page logo" />
           </a>
           <button className="navbar-toggler" type="button" onClick={handleNavbarCollapse} >
             <span className="navbar-toggler-icon"></span>
@@ -65,9 +65,15 @@ const NavBar = ({ loggedInUser, setLoggedInUser, handleCenterPointChange }) => {
 
             <ul className="navbar-nav align-right" id="navbar-right">
               {loggedInUser ?
-                <li className="nav-item">
-                  <a className="nav-link login-button" type="button" onClick={handleLogout}>Log out</a>
-                </li>
+                <>
+                  <li className="nav-item user-avatar">
+                    Welcome! {loggedInUser.first_name}
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link login-button" type="button" onClick={handleLogout}>Log out</a>
+                  </li>
+                </>
+
                 :
                 <>
                   <li className="nav-item">

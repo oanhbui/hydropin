@@ -83,7 +83,7 @@ const RatingForm = ({ stationID, afterSubmit }) => {
                                                 handleChange={(newStar) => formik.setFieldValue('score', newStar)}
                                             />
                                             {formik.errors.score ? (
-                                                <div>{formik.errors.score}</div>
+                                                <div className="error-message">{formik.errors.score}</div>
                                             ) : null}
                                     </div>
                                     <label htmlFor="review" className="form-label"></label>
@@ -96,7 +96,7 @@ const RatingForm = ({ stationID, afterSubmit }) => {
                                         onBlur={formik.handleBlur}
                                         value={formik.values.review} />
                                     {formik.touched.review && formik.errors.review ? (
-                                        <div>{formik.errors.review}</div>
+                                        <div className="error-message">{formik.errors.review}</div>
 
                                     ) : null}
                                     <button type="submit" className="btn btn-primary mt-3">Submit</button>

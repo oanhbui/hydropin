@@ -60,7 +60,7 @@ const LogInForm = ({ modalLogin, handleModalLogin, setLoggedInUser }) => {
                                     value={formik.values.email}
                                 />
                                 {formik.touched.email && formik.errors.email ? (
-                                    <div>{formik.errors.email}</div>
+                                    <div className="error-message">{formik.errors.email}</div>
                                 ) : null}
                             </div>
                             <div className="mb-5">
@@ -75,7 +75,7 @@ const LogInForm = ({ modalLogin, handleModalLogin, setLoggedInUser }) => {
                                     value={formik.values.password}
                                 />
                                 {formik.touched.password && formik.errors.password ? (
-                                    <div>{formik.errors.password}</div>
+                                    <div className="error-message">{formik.errors.password}</div>
                                 ) : null}
                                 <div className="form-text">Forgot your password?</div>
                             </div>

@@ -115,7 +115,7 @@ export default function StaionsMap({ mapData, loggedInUser, centerPoint, handleC
           latitude={station.latitude}
           closeButton={false}
         >
-          <div>
+          <div className="popup-distance">
             {station.distance.toFixed(1)} miles
           </div>
         </Popup>

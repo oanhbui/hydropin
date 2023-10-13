@@ -142,7 +142,7 @@ export default function StaionsMap({ mapData, loggedInUser, centerPoint, handleC
           clusterRadius: 50,
           clusterMaxZoom: 14
         }}
-        style={{ width: "100%", height: "90vh" }}
+        style={{ width: "100%", height: "80vh" }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         mapboxAccessToken={config.MAPBOX_TOKEN}
       >

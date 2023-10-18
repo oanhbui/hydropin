@@ -130,4 +130,4 @@ Future features to come:
 This project is licensed under the MIT License. See the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## <a name="acknowledgments"></a>Acknowledgments
-* Thanks to Hackbright Accademy guidance and support
+* Thanks to Hackbright Accademy for guidance and support

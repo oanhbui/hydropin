@@ -1,4 +1,7 @@
 ![Hydropin](./docs/hydropin-logo.png)
+<p align="center">
+  <img src="./docs/hydropin-logo.png" />
+</p>
 
 **[Hydropin](https://hydropin.us)** is an app that help hydrogen fuel cell vehicle owner to locate and track hydrogen station status
 

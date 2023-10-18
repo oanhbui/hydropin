@@ -1,4 +1,3 @@
-![Hydropin](./docs/hydropin-logo.png)
 <p align="center">
   <img src="./docs/hydropin-logo.png" />
 </p>

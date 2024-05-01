@@ -2,13 +2,16 @@ from server import app
 from models import *
 import json
 from decimal import Decimal
+from scraper import h2fcp_stations,  enrich_stations, update_stations_status
 
 if __name__ == '__main__':
+    stations = h2fcp_stations()
+    enrich_stations(stations)
+    update_stations_status(stations)
     connect_to_db(app)
     app.app_context().push()
-    f = open("/Users/oanhbui/src/stations.json", "r")
-    data = json.load(f)
-    for key, value in data.items():
+    
+    for key, value in stations.items():
         station = Station(id=int(key),
                           name=value["title"],
                           image=value["image"],
